@@ -13,6 +13,7 @@ def callback(ch, method, _, body):
     ch.basic_ack(delivery_tag=method.delivery_tag)
     payload = json.loads(body)
     logger.debug(payload)
+    send_mail(payload["subject"], payload["body"], payload["to"])
 
 
 if __name__ == '__main__':

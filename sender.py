@@ -4,12 +4,19 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+from logger import get_logger
+
+
+logger = get_logger("sender")
 
 SENDER = os.getenv("GMAIL_SENDER")
 PASSWORD = os.getenv("GMAIL_PASSKEY")
 
 
 def send_mail(subject: str, html_body: str, recipients: [str]):
+    logger.debug("subject: " + subject)
+    logger.debug("body: " + html_body)
+    logger.debug("recipients: " + str(recipients))
     mail = MIMEMultipart("alternative")
     mail["Subject"] = subject
     mail["From"] = SENDER

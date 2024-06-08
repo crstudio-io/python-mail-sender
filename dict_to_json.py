@@ -2,7 +2,7 @@
 import json
 
 with open("example_body.html") as body:
-    body_str = body.readlines()
+    body_str = "".join(body.readlines())
     print(json.dumps({
         "subject": "Login Request",
         "body": body_str,
