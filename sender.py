@@ -1,4 +1,5 @@
 import os
+import json
 import smtplib
 
 from email.mime.text import MIMEText
@@ -6,11 +7,21 @@ from email.mime.multipart import MIMEMultipart
 
 from logger import get_logger
 
+config = None
+config_file = os.getenv("RUNNER_CONF_FILE")
+if config_file and os.path.isfile(config_file):
+    with open(config_file) as conf_json:
+        config = json.load(conf_json)
 
 logger = get_logger("sender")
 
 SENDER = os.getenv("GMAIL_SENDER")
 PASSWORD = os.getenv("GMAIL_PASSKEY")
+
+if config and "gmail" in config.keys():
+    gmail_config = config.get("gmail")
+    SENDER = SENDER if gmail_config.get("sender") is None else gmail_config.get("sender")
+    PASSWORD = PASSWORD if gmail_config.get("passkey") is None else gmail_config.get("passkey")
 
 
 def send_mail(subject: str, html_body: str, recipients: [str]):

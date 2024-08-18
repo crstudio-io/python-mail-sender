@@ -13,8 +13,8 @@ A Python project used to send email. Currently, using Gmail smtp.
 ## TODO
 
 - [ ] Dockerfile
-- [ ] Configuration management
+- [X] Configuration management
 - [ ] GitHub Actions
 - [ ] Different SMTP providers
-- [ ] Read body from Redis
+- [ ] Read body from Redis?
 
