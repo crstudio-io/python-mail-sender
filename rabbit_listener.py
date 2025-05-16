@@ -24,7 +24,7 @@ def callback(ch, method, _, body):
 if __name__ == '__main__':
     rabbit_host = os.getenv("RABBIT_HOST", "localhost")
     rabbit_port = os.getenv("RABBIT_PORT", 5672)
-    rabbit_user = os.getenv("RABBIT_PORT", "user")
+    rabbit_user = os.getenv("RABBIT_USER", "user")
     rabbit_password = os.getenv("RABBIT_PASSWORD", "password")
     rabbit_queue = os.getenv("RABBIT_QUEUE_NAME", "send_mail_queue")
     if config and "rabbitmq" in config.keys():
